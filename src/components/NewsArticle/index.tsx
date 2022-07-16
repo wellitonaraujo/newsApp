@@ -1,7 +1,9 @@
+import {useNavigation} from '@react-navigation/native';
 import moment from 'moment';
-import React from 'react';
+import React, {useCallback} from 'react';
 import {Image, Text, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {SharedElement} from 'react-navigation-shared-element';
 import styles from './styles';
 
 type Post = {
@@ -14,17 +16,31 @@ type Post = {
 
 export const NewsArticle: React.FC<{
   post: Post;
-}> = ({post}) => {
+  index: number;
+}> = ({post, index}) => {
+  const navigation: any = useNavigation();
+  const handleNavigate = useCallback(() => {
+    navigation.navigate('NewsDetails', {article: post, articleIndex: index});
+  }, [index, navigation, post]);
   return (
-    <TouchableOpacity activeOpacity={1} style={styles.container}>
-      <Image
-        source={{
-          uri: post?.urlToImage ?? 'https://picsum.photos/800',
-          cache: 'force-cache',
-        }}
-        resizeMode={'cover'}
-        style={styles.image}
-      />
+    <TouchableOpacity
+      activeOpacity={1}
+      style={styles.container}
+      onPress={handleNavigate}>
+      <SharedElement
+        style={styles.imageContainer}
+        id={`article#${index}-Image`}>
+        <Image
+          source={{
+            uri:
+              post?.urlToImage ??
+              `https://picsum.photos/${Math.floor(Math.random() * 1000)}`,
+            cache: 'force-cache',
+          }}
+          resizeMode={'cover'}
+          style={styles.image}
+        />
+      </SharedElement>
       <LinearGradient
         colors={['#0000', '#000A', '#000']}
         style={styles.titleContainer}>

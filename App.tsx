@@ -1,9 +1,9 @@
 import React from 'react';
-import {ActivityIndicator, Text} from 'react-native';
+import {ActivityIndicator} from 'react-native';
 import {Provider} from 'react-redux';
-import { PersistGate } from 'redux-persist/es/integration/react';
-import {store, persistor} from './src/redux/store';
-import { Feed } from './src/screens/feed';
+import {PersistGate} from 'redux-persist/integration/react';
+import {RootNavigation} from './src/navigation/stack.routes';
+import {persistor, store} from './src/redux/store';
 
 const App: React.FC = () => {
   return (
@@ -11,10 +11,9 @@ const App: React.FC = () => {
       <PersistGate
         loading={<ActivityIndicator size={'large'} color={'#000'} />}
         persistor={persistor}>
-      <Feed />
+        <RootNavigation />
       </PersistGate>
     </Provider>
   );
 };
-
 export default App;

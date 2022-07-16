@@ -3,11 +3,11 @@ interface NewsCategoryTypes {
   }
   
 export const NewsCategory: NewsCategoryTypes = {
-    business: 'business',
-    entertainment: 'entertainment',
+    negócio: 'business',
+    entretenimento: 'entertainment',
     general: 'general',
-    health: 'health',
-    science: 'science',
-    sports: 'sports',
-    technology: 'technology',
+    saúde: 'health',
+    ciência: 'science',
+    esportes: 'sports',
+    tecnologia: 'technology',
   };

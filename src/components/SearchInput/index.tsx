@@ -26,7 +26,7 @@ export const SearchInput: React.FC<{
   );
   return (
     <TextInput
-      placeholder={'Search'}
+      placeholder={'Buscar'}
       placeholderTextColor={placeholderColor}
       style={[styles.container, {backgroundColor, color}]}
       value={searchText}
