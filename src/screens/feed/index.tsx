@@ -15,7 +15,7 @@ export const Feed: React.FC = () => {
   const dispatch: Function = useDispatch();
 
   useEffect(() => {
-    dispatch(getNewsFeed());
+    dispatch(getNewsFeed(setIsLoading));
   }, [dispatch]);
 
   const handleRefresh = useCallback(() => {
